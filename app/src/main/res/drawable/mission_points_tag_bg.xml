@@ -1,0 +1,6 @@
+<!-- Para las etiquetas "+ 58", "+ 100", etc. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#F3E8FF"/> <!-- Morado muy claro -->
+    <corners android:radius="8dp"/>
+    <stroke android:width="1dp" android:color="#D1C4E9"/> <!-- Borde morado claro -->
+</shape>

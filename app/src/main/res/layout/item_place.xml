@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/white_card_bg"
+    android:layout_marginBottom="16dp"
+    android:clipToOutline="true">
+
+    <!-- IMAGEN DEL LUGAR
+         scaleType="centerCrop": Hace que la imagen llene todo el espacio sin deformarse.
+         background="white": Evita parches negros si la imagen tarda en cargar.
+    -->
+    <ImageView
+        android:id="@+id/item_place_image"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:src="@drawable/ic_mission_coffee"
+        android:scaleType="centerCrop"
+        android:background="@android:color/white"/>
+
+    <!-- CONTENIDO DE TEXTO -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/item_place_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@+id/item_place_points"
+                android:layout_marginEnd="8dp"
+                android:text="Título del Lugar"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/item_place_points"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+ 0 pts"
+                android:textColor="#8E44AD"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"/>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/item_place_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Descripción del lugar..."
+            android:textColor="#666666"
+            android:textSize="14sp"
+            android:layout_marginTop="4dp"/>
+
+        <TextView
+            android:id="@+id/item_place_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CATEGORÍA"
+            android:background="@drawable/tag_bg"
+            android:textColor="#8E44AD"
+            android:textStyle="bold"
+            android:textSize="10sp"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="4dp"
+            android:layout_marginTop="12dp"/>
+
+        <!-- BOTONES DE ACCIÓN -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <!-- Botón Ver Mapa -->
+            <Button
+                android:id="@+id/item_btn_map"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Ver Mapa"
+                android:textColor="#8E44AD"
+                android:background="@android:color/transparent"
+                android:textStyle="bold"
+                android:layout_marginEnd="8dp"
+                app:backgroundTint="@null"/>
+
+            <!-- Botón Check-in
+                 app:backgroundTint="@null" es CRUCIAL.
+                 Evita que Android le ponga un color encima a tu degradado.
+            -->
+            <Button
+                android:id="@+id/item_btn_checkin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:text="Check-in"
+                android:background="@drawable/gradient_button_bg"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                app:backgroundTint="@null"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

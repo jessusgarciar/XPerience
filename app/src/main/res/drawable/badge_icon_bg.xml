@@ -1,0 +1,5 @@
+<!-- Fondo para los iconos de las 8 insignias -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <solid android:color="#F3E8FF"/> <!-- Morado muy claro -->
+</shape>

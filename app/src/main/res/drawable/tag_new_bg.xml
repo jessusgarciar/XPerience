@@ -1,0 +1,5 @@
+<!-- Para la etiqueta "NUEVO" -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#8E44AD"/> <!-- Púrpura sólido -->
+    <corners android:radius="6dp"/>
+</shape>

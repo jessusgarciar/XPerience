@@ -1,0 +1,5 @@
+<!-- Para el filtro "Popular" -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#8E44AD"/> <!-- Púrpura sólido -->
+    <corners android:radius="18dp"/>
+</shape>

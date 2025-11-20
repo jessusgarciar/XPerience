@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/white_card_bg"
+    android:layout_marginBottom="16dp"
+    android:padding="16dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/img_mission_icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_mission_coffee"
+            android:layout_marginEnd="12dp"/>
+        <TextView
+            android:id="@+id/txt_mission_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/img_mission_icon"
+            android:text="Título Misión"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/txt_mission_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/img_mission_icon"
+            android:layout_below="@id/txt_mission_title"
+            android:text="Descripción"
+            android:textColor="#666666"
+            android:textSize="12sp"/>
+        <TextView
+            android:id="@+id/txt_mission_points"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+ 0"
+            android:background="@drawable/mission_points_tag_bg"
+            android:textColor="#8E44AD"
+            android:textStyle="bold"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="4dp"
+            android:textSize="12sp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"/>
+    </RelativeLayout>
+</LinearLayout>

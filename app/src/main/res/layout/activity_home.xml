@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/app_main_background"
+    tools:context=".HomeActivity">
+
+    <!-- Contenedor principal donde se cargarán los fragmentos -->
+    <FrameLayout
+        android:id="@+id/main_fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_navigation_bar" />
+
+    <!-- Barra de Navegación Manual -->
+    <LinearLayout
+        android:id="@+id/bottom_navigation_bar"
+        android:layout_width="match_parent"
+        android:layout_height="78dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:background="@drawable/bottom_nav_background"
+        android:elevation="6dp"
+        android:paddingTop="8dp"
+        android:gravity="center_vertical">
+
+        <!-- Icono 1: Home -->
+        <LinearLayout
+            android:id="@+id/nav_home"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?android:attr/selectableItemBackgroundBorderless">
+            <ImageView
+                android:id="@+id/icon_home"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_home"/>
+            <TextView
+                android:id="@+id/text_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Home"
+                android:textSize="12sp"/>
+        </LinearLayout>
+
+        <!-- Icono 2: Explorar -->
+        <LinearLayout
+            android:id="@+id/nav_explore"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?android:attr/selectableItemBackgroundBorderless">
+            <ImageView
+                android:id="@+id/icon_explore"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_explore"/>
+            <TextView
+                android:id="@+id/text_explore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Explorar"
+                android:textSize="12sp"/>
+        </LinearLayout>
+
+        <!-- Icono 3: Misiones -->
+        <LinearLayout
+            android:id="@+id/nav_missions"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?android:attr/selectableItemBackgroundBorderless">
+            <ImageView
+                android:id="@+id/icon_missions"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_missions"/>
+            <TextView
+                android:id="@+id/text_missions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Misiones"
+                android:textSize="12sp"/>
+        </LinearLayout>
+
+        <!-- Icono 4: Perfil -->
+        <LinearLayout
+            android:id="@+id/nav_profile"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?android:attr/selectableItemBackgroundBorderless">
+            <ImageView
+                android:id="@+id/icon_profile"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_profile"/>
+            <TextView
+                android:id="@+id/text_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Perfil"
+                android:textSize="12sp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

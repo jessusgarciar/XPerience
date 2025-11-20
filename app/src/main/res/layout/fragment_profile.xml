@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:clipToPadding="false"
+    android:paddingBottom="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="30dp"> <!-- Ajuste para evitar la barra de estado -->
+
+        <!-- Cabecera de Perfil -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/gradient_button_bg"
+            android:padding="20dp">
+
+            <!-- Foto de Perfil (Placeholder circular) -->
+            <View
+                android:id="@+id/profile_pic_bg"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/profile_header_circle"
+                android:layout_marginEnd="16dp"/>
+
+            <!-- Nombre del Usuario -->
+            <TextView
+                android:id="@+id/profile_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/profile_pic_bg"
+                android:text="Explorador"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+            <!-- Ubicación -->
+            <TextView
+                android:id="@+id/profile_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/profile_pic_bg"
+                android:layout_below="@id/profile_name"
+                android:text="Aguascalientes, MX"
+                android:textColor="@android:color/white"
+                android:alpha="0.8"
+                android:drawableLeft="@drawable/ic_location_pin"
+                app:drawableTint="@android:color/white"
+                android:drawablePadding="4dp"/>
+
+            <!-- Etiqueta de Nivel -->
+            <TextView
+                android:id="@+id/profile_level"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/profile_pic_bg"
+                android:layout_below="@id/profile_location"
+                android:text="Nivel 1"
+                android:background="@drawable/level_chip_bg"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:textSize="10sp"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="4dp"
+                android:layout_marginTop="4dp"/>
+
+            <!-- Barra de Progreso de Nivel -->
+            <ProgressBar
+                android:id="@+id/level_progress"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:layout_below="@id/profile_pic_bg"
+                android:layout_marginTop="16dp"
+                android:progress="0"
+                android:max="1000"
+                android:progressDrawable="@drawable/progress_bar_custom_white"/>
+
+            <!-- Textos de Progreso -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/level_progress"
+                android:layout_marginTop="4dp"
+                android:text="Progreso al sig. nivel"
+                android:textColor="@android:color/white"
+                android:alpha="0.8"
+                android:textSize="12sp"/>
+            <TextView
+                android:id="@+id/text_points_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/level_progress"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="4dp"
+                android:text="0 pts"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:textSize="12sp"/>
+        </RelativeLayout>
+
+        <!-- Tarjetas de Estadísticas (Puntos y Racha) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <!-- Tarjeta Puntos Totales -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:background="@drawable/white_card_bg"
+                android:padding="16dp"
+                android:gravity="center_horizontal"
+                android:layout_marginEnd="8dp">
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_star_points"
+                    app:tint="#8E44AD"/>
+                <TextView
+                    android:id="@+id/text_stat_total_points"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="4dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Puntos totales"
+                    android:textColor="#666666"
+                    android:textSize="12sp"/>
+            </LinearLayout>
+
+            <!-- Tarjeta Racha -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:background="@drawable/white_card_bg"
+                android:padding="16dp"
+                android:gravity="center_horizontal"
+                android:layout_marginStart="8dp">
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_calendar"
+                    app:tint="#8E44AD"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5 días"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="4dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Racha actual"
+                    android:textColor="#666666"
+                    android:textSize="12sp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Sección Progreso Detallado -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tu Progreso"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="24dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/white_card_bg"
+            android:layout_marginTop="16dp"
+            android:padding="16dp">
+
+            <!-- Progreso Lugares Visitados -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/icon_p1"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_route_stops"
+                    app:tint="#8E44AD"
+                    android:layout_marginEnd="12dp"
+                    android:layout_centerVertical="true"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/icon_p1"
+                    android:text="Lugares visitados"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
+                    android:layout_centerVertical="true"/>
+                <TextView
+                    android:id="@+id/text_places_visited_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0/50"
+                    android:textColor="#666666"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"/>
+            </RelativeLayout>
+            <ProgressBar
+                android:id="@+id/progress_places"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:layout_marginTop="8dp"
+                android:progress="0"
+                android:max="50"
+                android:progressDrawable="@drawable/progress_bar_custom"/>
+        </LinearLayout>
+
+        <!-- Sección Historial de Visitas -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Historial de Visitas"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="24dp"/>
+
+        <!-- Contenedor Dinámico para el Historial -->
+        <LinearLayout
+            android:id="@+id/history_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="16dp"/>
+
+    </LinearLayout>
+</ScrollView>

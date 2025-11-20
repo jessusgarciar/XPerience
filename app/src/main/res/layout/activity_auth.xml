@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+  Este es el layout principal. 
+  Ahora incluye tanto el formulario de inicio de sesión como el de registro.
+  Por defecto, el de registro está visible.
+--><RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/auth"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/auth"
+    tools:context=".AuthActivity">
+
+    <!-- Contenedor para centrar el contenido verticalmente --><LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:paddingTop="48dp"
+    android:paddingBottom="24dp">
+
+    <!-- Logo --><ImageView
+    android:id="@+id/logo"
+    android:layout_width="80dp"
+    android:layout_height="80dp"
+    android:background="@drawable/logo_background"
+    android:src="@drawable/ic_star"
+    app:tint="@android:color/white"
+    android:padding="20dp"
+    android:contentDescription="Logo" />
+
+    <!-- Título --><TextView
+    android:id="@+id/title"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="LET'S GO XPERIENCE"
+    android:textSize="28sp"
+    android:textStyle="bold"
+    android:textColor="#C039CC"
+    android:layout_marginTop="16dp"
+    android:letterSpacing="0.05"/>
+
+    <!-- Subtítulo --><TextView
+    android:id="@+id/subtitle"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Convierte tus salidas en aventuras"
+    android:textSize="16sp"
+    android:textColor="#666666"
+    android:layout_marginTop="4dp"/>
+
+    <!-- Contenedor de Pestañas (Tabs) --><LinearLayout
+    android:id="@+id/tab_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginTop="24dp"
+    android:layout_marginStart="32dp"
+    android:layout_marginEnd="32dp"
+    android:background="@drawable/tab_unselected_bg"
+    android:padding="4dp">
+
+    <TextView
+        android:id="@+id/tab_login"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Iniciar Sesión"
+        android:gravity="center"
+        android:padding="12dp"
+        android:textColor="#666666"
+        android:background="@android:color/transparent"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/tab_register"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Registrarse"
+        android:gravity="center"
+        android:padding="12dp"
+        android:textColor="@android:color/white"
+        android:background="@drawable/tab_selected_bg"
+        android:textStyle="bold"/>
+</LinearLayout>
+
+    <!--
+      CONTENEDOR DEL FRAGMENTO
+      Aquí es donde se "inflarán" los fragmentos (login o register).
+      Reemplaza el RelativeLayout "content_card" y todo su contenido.
+    -->
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-8dp"
+        tools:layout="@layout/fragment_register" />
+    <!-- El marginTop negativo es para que se solape con las pestañas -->
+
+</LinearLayout>
+
+    <!-- Texto de pie de página --><TextView
+    android:id="@+id/footer_text"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Datos guardados localmente en tu navegador"
+    android:layout_alignParentBottom="true"
+    android:layout_centerHorizontal="true"
+    android:layout_marginBottom="24dp"
+    android:textColor="#888888"/>
+
+</RelativeLayout>

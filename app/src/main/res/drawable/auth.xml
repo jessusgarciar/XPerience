@@ -1,0 +1,50 @@
+<!-- Este es el archivo que proporcionaste para el fondo -->
+<vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="393.42dp"
+    android:height="851.47dp"
+    android:viewportWidth="393.42"
+    android:viewportHeight="851.47">
+    <group>
+    <clip-path
+    android:pathData="M0 0H393.423V851.467H0V0Z"
+    />
+    <group
+        android:translateX="1"
+        android:translateY="-1"
+        android:pivotX="196.712"
+        android:pivotY="425.734"
+        android:scaleX="2.828"
+        android:scaleY="5.657"
+        android:rotation="45" >
+
+        <path
+            android:pathData="M0 0V851.467H393.423V0"
+        >
+    <aapt:attr name="android:fillColor">
+    <gradient
+        android:type="linear"
+        android:startX="98.356"
+        android:startY="425.734"
+        android:endX="295.068"
+        android:endY="425.734"
+        >
+    <item
+        android:color="#FAF5FF"
+        android:offset="0"
+    />
+    <item
+        android:color="#FDF2F8"
+        android:offset="0.5"
+    />
+    <item
+        android:color="#F3E8FF"
+        android:offset="1"
+        />
+</gradient>
+</aapt:attr>
+</path>
+</group>
+</group>
+</vector>

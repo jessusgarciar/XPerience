@@ -1,0 +1,5 @@
+<!-- Para las etiquetas "+50 pts", "+100 pts" en actividad reciente -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#F3E8FF"/> <!-- Morado muy claro -->
+    <corners android:radius="8dp"/>
+</shape>

@@ -1,0 +1,5 @@
+<!-- Define el fondo gris claro para el contenedor de pestañas -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#F3F4F6"/> <!-- Un color gris claro -->
+    <corners android:radius="16dp"/>
+</shape>

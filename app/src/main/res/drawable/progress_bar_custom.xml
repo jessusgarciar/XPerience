@@ -1,0 +1,19 @@
+<!-- Define los colores para la barra de progreso -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Fondo gris de la barra -->
+    <item android:id="@android:id/background">
+        <shape>
+            <corners android:radius="4dp" />
+            <solid android:color="#E0E0E0" />
+        </shape>
+    </item>
+    <!-- Progreso (color morado) -->
+    <item android:id="@android:id/progress">
+        <clip>
+            <shape>
+                <corners android:radius="4dp" />
+                <solid android:color="#8E44AD" />
+            </shape>
+        </clip>
+    </item>
+</layer-list>

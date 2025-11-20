@@ -1,0 +1,5 @@
+<!-- Define el fondo para la caja de "Usuario de prueba" -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#F3E8FF"/> <!-- Un color morado muy claro -->
+    <corners android:radius="12dp"/>
+</shape>

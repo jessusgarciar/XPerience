@@ -1,0 +1,8 @@
+<!-- Para el botón circular de "Añadir Puntos" -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <gradient
+        android:startColor="#D946EF"
+        android:endColor="#8E44AD"
+        android:angle="0"/>
+</shape>
