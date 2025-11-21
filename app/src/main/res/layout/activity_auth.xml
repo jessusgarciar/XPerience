@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_screen_start"
+    android:fitsSystemWindows="true"
     tools:context=".AuthActivity">
 
 
@@ -92,7 +93,8 @@
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="-8dp" />
+            android:layout_marginTop="-8dp"
+            tools:layout="@layout/fragment_login" />
 
     </LinearLayout>
 
@@ -100,7 +102,7 @@
         android:id="@+id/footer_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Datos guardados localmente en tu navegador"
+        android:text="Datos guardados localmente en tu celular"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="24dp"

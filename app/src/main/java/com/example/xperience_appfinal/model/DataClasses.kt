@@ -1,6 +1,12 @@
 package com.example.xperience_appfinal.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "users")
 data class User(
+    @PrimaryKey(autoGenerate = false)
+    var id: Int = 1, // ID fijo para el usuario actual
     var name: String,
     var points: Int,
     var level: Int,
@@ -9,7 +15,9 @@ data class User(
     var profileImageUri: String? = null
 )
 
+@Entity(tableName = "places")
 data class Place(
+    @PrimaryKey
     val id: String,
     val title: String,
     val description: String,
@@ -21,7 +29,9 @@ data class Place(
     var isVisited: Boolean = false
 )
 
+@Entity(tableName = "missions")
 data class Mission(
+    @PrimaryKey
     val id: String,
     val title: String,
     val description: String,
@@ -31,7 +41,9 @@ data class Mission(
     val iconResId: Int
 )
 
+@Entity(tableName = "rewards")
 data class Reward(
+    @PrimaryKey
     val id: String,
     val title: String,
     val cost: Int,
