@@ -7,15 +7,15 @@ import kotlin.compareTo
 import kotlin.div
 import kotlin.inc
 
-
 object MockRepository {
 
     val currentUser = User(
         name = "Explorador Hidrocálido",
-        points = 150,
-        level = 2,
-        visitedPlacesCount = 12,
-        completedMissionsCount = 5
+        points = 0,
+        level = 0,
+        visitedPlacesCount = 0,
+        completedMissionsCount = 0,
+        profileImageUri = null
     )
 
     // --- LUGARES (Lista Actualizada Aguascalientes) ---
@@ -96,21 +96,88 @@ object MockRepository {
             longitude = -102.4155,
             imageResId = R.drawable.place_parque,
             isVisited = false
+        ),
+        Place(
+            id = "p8",
+            title = "Playas",
+            description = "Diversión en las playas de San José de Gracia",
+            pointsAwarded = 150,
+            category = "PLAYA",
+            latitude = 22.1502, // 22.150269332174528, -102.42160556432289
+            longitude = -102.4216,
+            imageResId = R.drawable.place_playasjg,
+            isVisited = false
+        ),
+        Place(
+            id = "p9",
+            title = "Cristo Roto",
+            description = "Isla de San Jose de Gracia",
+            pointsAwarded = 100,
+            category = "AVENTURA",
+            latitude = 22.1389, // 22.138969632249914, -102.43065687967793
+            longitude = -102.4306,
+            imageResId = R.drawable.place_cristo,
+            isVisited = false
+        ),
+        Place(
+            id = "p10",
+            title = "Plaza Principal Pabellon",
+            description = "Plaza de Pabellon de Arteaga",
+            pointsAwarded = 150,
+            category = "PLAZA",
+            latitude = 22.1477, //22.147750744505863, -102.27850090877669
+            longitude = -102.2785,
+            imageResId = R.drawable.place_plazapabellon,
+            isVisited = false
+        ),
+        Place(
+            id = "p11",
+            title = "Altaria",
+            description = "Centro Comercial",
+            pointsAwarded = 100,
+            category = "CENTRO_COMERCIAL",
+            latitude = 21.9238, //21.9238133898988, -102.29028648159235
+            longitude = -102.2902,
+            imageResId = R.drawable.place_altaria,
+            isVisited = false
+        ),
+        Place(
+            id = "p12",
+            title = "Universidad Autonoma de Aguascalientes",
+            description = "Universidad",
+            pointsAwarded = 200,
+            category = "EDUCACION",
+            latitude = 21.9102,
+            longitude = -102.3153,
+            imageResId = R.drawable.place_uaa,
+            isVisited = false
         )
     )
 
     val missionsList = listOf(
-        Mission("m1", "Aventura en Altura", "Cruza los puentes de Boca de Túnel", 100, 1, 0, R.drawable.ic_explore),
+        Mission("m1", "Comida Rapida", "Visita el Restaurante Apapacho", 100, 1, 0, R.drawable.ic_explore),
         Mission("m2", "Cultura Clásica", "Visita el Museo Aguascalientes", 30, 1, 0, R.drawable.ic_mission_museum),
-        Mission("m3", "Tarde de Juegos", "Visita Punto y Aparte", 70, 1, 0, R.drawable.ic_mission_foodie)
+        Mission("m3", "Tarde de Juegos con amigos", "Visita Punto y Aparte", 70, 1, 0, R.drawable.ic_mission_foodie)
     )
 
     val rewardsList = listOf(
         Reward("r1", "Sticker Xperience", 30, R.drawable.ic_star_points),
-        Reward("r2", "Galleta de Cortesía", 50, R.drawable.ic_mission_foodie),
-        Reward("r3", "Topping Extra", 60, R.drawable.ic_mission_foodie),
-        Reward("r4", "Bebida Pequeña", 90, R.drawable.ic_mission_coffee)
+        Reward("r2", "Promocion de Cinepolis", 1000, R.drawable.ic_mission_cinema),
+        Reward("r3", "Galleta de Cortesía", 50, R.drawable.ic_mission_foodie),
+        Reward("r4", "Topping Extra", 60, R.drawable.ic_mission_foodie),
+        Reward("r6", "Experiencia Boca de Tunel todo pagado", 10000, R.drawable.ic_mission_adventure),
+        Reward("r7", "Bebida Pequeña", 90, R.drawable.ic_mission_coffee)
+
     )
+    private val loginUsers = listOf(
+        LoginUser("DianaCesillon", "123456"),
+        LoginUser("JesusGarcia", "123456"),
+        LoginUser("RobertoMedrano", "123456")
+    )
+
+    fun verifyUser(username: String, pass: String): Boolean {
+        return loginUsers.any { it.username == username && it.pass == pass }
+    }
 
     fun addPoints(amount: Int) {
         currentUser.points += amount

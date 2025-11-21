@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/app_main_background"
+    android:background="@color/bg_screen_start"
+    android:fitsSystemWindows="true"
     tools:context=".HomeActivity">
 
     <!-- Contenedor principal donde se cargarán los fragmentos -->

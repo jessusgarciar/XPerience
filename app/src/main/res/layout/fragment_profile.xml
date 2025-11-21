@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/transparent"
     android:clipToPadding="false"
+    android:fillViewport="true"
     android:paddingBottom="16dp">
 
     <LinearLayout
@@ -12,7 +14,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingHorizontal="16dp"
-        android:paddingTop="30dp"> <!-- Ajuste para evitar la barra de estado -->
+        android:paddingTop="48dp">
 
         <!-- Cabecera de Perfil -->
         <RelativeLayout
@@ -21,49 +23,72 @@
             android:background="@drawable/gradient_button_bg"
             android:padding="20dp">
 
-            <!-- Foto de Perfil (Placeholder circular) -->
-            <View
-                android:id="@+id/profile_pic_bg"
+            <!-- FOTO DE PERFIL INTERACTIVA -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_profile_pic"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:background="@drawable/profile_header_circle"
-                android:layout_marginEnd="16dp"/>
+                android:layout_marginEnd="16dp"
+                card_view:cardCornerRadius="40dp"
+                card_view:cardElevation="0dp"
+                card_view:cardBackgroundColor="@color/white_fixed">
 
-            <!-- Nombre del Usuario -->
+                <ImageView
+                    android:id="@+id/img_profile_pic"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_profile"
+                    android:scaleType="centerCrop"
+                    app:tint="#CCCCCC"/>
+
+                <!-- Overlay oscuro para el icono de cámara -->
+                <View
+                    android:id="@+id/view_profile_overlay"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#40000000"/>
+
+                <!-- Icono de cámara pequeño -->
+                <ImageView
+                    android:id="@+id/img_camera_icon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_camera_edit"
+                    android:layout_gravity="center"/>
+            </androidx.cardview.widget.CardView>
+
             <TextView
                 android:id="@+id/profile_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/profile_pic_bg"
+                android:layout_toEndOf="@id/card_profile_pic"
                 android:text="Explorador"
-                android:textColor="@android:color/white"
+                android:textColor="@color/white_fixed"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
 
-            <!-- Ubicación -->
             <TextView
                 android:id="@+id/profile_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/profile_pic_bg"
+                android:layout_toEndOf="@id/card_profile_pic"
                 android:layout_below="@id/profile_name"
                 android:text="Aguascalientes, MX"
-                android:textColor="@android:color/white"
+                android:textColor="@color/white_fixed"
                 android:alpha="0.8"
                 android:drawableLeft="@drawable/ic_location_pin"
-                app:drawableTint="@android:color/white"
+                app:drawableTint="@color/white_fixed"
                 android:drawablePadding="4dp"/>
 
-            <!-- Etiqueta de Nivel -->
             <TextView
                 android:id="@+id/profile_level"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/profile_pic_bg"
+                android:layout_toEndOf="@id/card_profile_pic"
                 android:layout_below="@id/profile_location"
                 android:text="Nivel 1"
-                android:background="@drawable/level_chip_bg"
-                android:textColor="@android:color/white"
+                android:background="@drawable/white_card_bg"
+                android:textColor="@color/text_primary"
                 android:textStyle="bold"
                 android:textSize="10sp"
                 android:paddingHorizontal="8dp"
@@ -76,20 +101,19 @@
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="8dp"
-                android:layout_below="@id/profile_pic_bg"
+                android:layout_below="@id/card_profile_pic"
                 android:layout_marginTop="16dp"
                 android:progress="0"
                 android:max="1000"
                 android:progressDrawable="@drawable/progress_bar_custom_white"/>
 
-            <!-- Textos de Progreso -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/level_progress"
                 android:layout_marginTop="4dp"
                 android:text="Progreso al sig. nivel"
-                android:textColor="@android:color/white"
+                android:textColor="@color/white_fixed"
                 android:alpha="0.8"
                 android:textSize="12sp"/>
             <TextView
@@ -100,12 +124,12 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="4dp"
                 android:text="0 pts"
-                android:textColor="@android:color/white"
+                android:textColor="@color/white_fixed"
                 android:textStyle="bold"
                 android:textSize="12sp"/>
         </RelativeLayout>
 
-        <!-- Tarjetas de Estadísticas (Puntos y Racha) -->
+        <!-- Estadísticas -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -126,13 +150,13 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_star_points"
-                    app:tint="#8E44AD"/>
+                    app:tint="@color/purple_brand"/>
                 <TextView
                     android:id="@+id/text_stat_total_points"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/text_primary"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:layout_marginTop="4dp"/>
@@ -140,38 +164,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Puntos totales"
-                    android:textColor="#666666"
-                    android:textSize="12sp"/>
-            </LinearLayout>
-
-            <!-- Tarjeta Racha -->
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:background="@drawable/white_card_bg"
-                android:padding="16dp"
-                android:gravity="center_horizontal"
-                android:layout_marginStart="8dp">
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_calendar"
-                    app:tint="#8E44AD"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="5 días"
-                    android:textColor="@android:color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:layout_marginTop="4dp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Racha actual"
-                    android:textColor="#666666"
+                    android:textColor="@color/text_secondary"
                     android:textSize="12sp"/>
             </LinearLayout>
         </LinearLayout>
@@ -181,7 +174,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Tu Progreso"
-            android:textColor="@android:color/black"
+            android:textColor="@color/text_primary"
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_marginTop="24dp"/>
@@ -203,7 +196,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_route_stops"
-                    app:tint="#8E44AD"
+                    app:tint="@color/purple_brand"
                     android:layout_marginEnd="12dp"
                     android:layout_centerVertical="true"/>
                 <TextView
@@ -211,7 +204,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/icon_p1"
                     android:text="Lugares visitados"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/text_primary"
                     android:textStyle="bold"
                     android:layout_centerVertical="true"/>
                 <TextView
@@ -219,7 +212,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0/50"
-                    android:textColor="#666666"
+                    android:textColor="@color/text_secondary"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"/>
             </RelativeLayout>
@@ -239,7 +232,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Historial de Visitas"
-            android:textColor="@android:color/black"
+            android:textColor="@color/text_primary"
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_marginTop="24dp"/>

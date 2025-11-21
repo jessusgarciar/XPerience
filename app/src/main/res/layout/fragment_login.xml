@@ -1,9 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  Este es el layout PARA EL FRAGMENTO de Login.
-  El root (LinearLayout) es la tarjeta blanca.
-  Reutiliza todos los drawables existentes.
--->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -15,23 +10,17 @@
     android:padding="24dp"
     android:elevation="4dp">
 
-    <!--
-      Encabezado de la tarjeta (Corregido con un RelativeLayout
-      para que los atributos 'toEndOf' y 'below' funcionen)
-    -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
         <ImageView
             android:id="@+id/icon_welcome"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/ic_menu_info_details"
-            app:tint="#8E44AD"
+            android:src="@drawable/ic_welcome_arrow"
+            app:tint="@color/purple_brand"
             android:layout_marginEnd="8dp"
             android:layout_centerVertical="true"/>
-
         <TextView
             android:id="@+id/text_welcome"
             android:layout_width="wrap_content"
@@ -40,8 +29,7 @@
             android:layout_toEndOf="@id/icon_welcome"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:textColor="@android:color/black"/>
-
+            android:textColor="@color/text_primary"/>
         <TextView
             android:id="@+id/text_instructions"
             android:layout_width="wrap_content"
@@ -50,101 +38,61 @@
             android:layout_below="@id/text_welcome"
             android:layout_toEndOf="@id/icon_welcome"
             android:layout_marginTop="4dp"
-            android:textColor="#666666"/>
+            android:textColor="@color/text_secondary"/>
     </RelativeLayout>
 
-    <!-- Campo de Email -->
     <TextView
         android:id="@+id/label_email_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Email"
+        android:text="Usuario"
         android:layout_marginTop="16dp"
-        android:textColor="@android:color/black"
+        android:textColor="@color/text_secondary"
         android:textStyle="bold"/>
-
     <EditText
         android:id="@+id/edit_email_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="tu@email.com"
+        android:hint="TuUsuario"
         android:inputType="textEmailAddress"
-        android:background="@drawable/edittext_bg"
+        android:background="@drawable/bg_input"
         android:padding="12dp"
+        android:textColor="@color/text_input"
+        android:textColorHint="@color/text_hint"
         android:layout_marginTop="4dp"/>
 
-    <!-- Campo de Contraseña -->
     <TextView
         android:id="@+id/label_password_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Contraseña"
         android:layout_marginTop="16dp"
-        android:textColor="@android:color/black"
+        android:textColor="@color/text_secondary"
         android:textStyle="bold"/>
-
     <EditText
         android:id="@+id/edit_password_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="********"
         android:inputType="textPassword"
-        android:background="@drawable/edittext_bg"
+        android:background="@drawable/bg_input"
         android:padding="12dp"
+        android:textColor="@color/text_input"
+        android:textColorHint="@color/text_hint"
         android:layout_marginTop="4dp"/>
 
-    <!-- Caja de Información -->
-    <LinearLayout
-        android:id="@+id/info_box_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@drawable/info_box_bg"
-        android:padding="16dp"
-        android:layout_marginTop="16dp"
-        android:gravity="center_vertical">
 
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_info_bulb"
-            app:tint="#8E44AD"
-            android:layout_marginEnd="12dp"/>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Usuario de prueba:"
-                android:textStyle="bold"
-                android:textColor="#512E5F"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Email: test@test.com"
-                android:textColor="#512E5F"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Contraseña: 123456"
-                android:textColor="#512E5F"/>
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <!-- Botón de Iniciar Sesión -->
     <Button
         android:id="@+id/btn_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Iniciar Sesión"
         android:background="@drawable/gradient_button_bg"
-        android:textColor="@android:color/white"
+        android:textColor="@color/white_fixed"
         android:textStyle="bold"
         android:layout_marginTop="16dp"
-        android:padding="14dp"/>
+        android:padding="14dp"
+        app:backgroundTint="@null"/>
 
 </LinearLayout>

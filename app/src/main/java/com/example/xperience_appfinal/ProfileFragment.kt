@@ -1,31 +1,80 @@
 package com.example.xperience_appfinal
 
+import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import com.example.xperience_appfinal.databinding.FragmentProfileBinding
 import com.example.xperience_appfinal.model.MockRepository
 
-
 class ProfileFragment : Fragment() {
+
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    // 1. Crear el lanzador para seleccionar contenido (Imágenes)
+    private val pickMedia = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+        // Este bloque se ejecuta cuando el usuario selecciona una foto
+        if (uri != null) {
+            // Mostrar la imagen en el ImageView
+            binding.imgProfilePic.setImageURI(uri)
+
+            // Quitar el tinte gris para que se vean los colores de la foto
+            binding.imgProfilePic.imageTintList = null
+
+            // Guardar la URI en el repositorio (temporalmente en memoria)
+            MockRepository.currentUser.profileImageUri = uri.toString()
+            
+            // Ocultar el icono de la cámara y el overlay
+            binding.imgCameraIcon.visibility = View.GONE
+            binding.viewProfileOverlay.visibility = View.GONE
+        }
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // 2. Configurar el Click Listener en la foto de perfil
+        binding.cardProfilePic.setOnClickListener {
+            // Lanzar el selector de imágenes (tipo MIME "image/*")
+            pickMedia.launch("image/*")
+        }
+
         updateProfileUI()
     }
 
     private fun updateProfileUI() {
         val user = MockRepository.currentUser
+
+        // Cargar foto de perfil si existe
+        if (user.profileImageUri != null) {
+            binding.imgProfilePic.setImageURI(Uri.parse(user.profileImageUri))
+            binding.imgProfilePic.imageTintList = null // Quitar tinte si hay foto
+            binding.imgCameraIcon.visibility = View.GONE
+            binding.viewProfileOverlay.visibility = View.GONE
+        } else {
+            binding.imgProfilePic.setImageResource(R.drawable.ic_profile)
+            // Opcional: Restaurar tinte si quieres que el placeholder se vea gris
+            // binding.imgProfilePic.setColorFilter(Color.LTGRAY)
+            binding.imgCameraIcon.visibility = View.VISIBLE
+            binding.viewProfileOverlay.visibility = View.VISIBLE
+        }
+
         binding.profileName.text = user.name
         binding.profileLevel.text = "Nivel ${user.level}"
         binding.textPointsHeader.text = "${user.points} pts"

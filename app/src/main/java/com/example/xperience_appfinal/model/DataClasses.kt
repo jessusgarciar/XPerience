@@ -1,11 +1,12 @@
 package com.example.xperience_appfinal.model
 
 data class User(
-    val name: String,
+    var name: String,
     var points: Int,
     var level: Int,
     var visitedPlacesCount: Int,
-    var completedMissionsCount: Int
+    var completedMissionsCount: Int,
+    var profileImageUri: String? = null
 )
 
 data class Place(
@@ -35,4 +36,9 @@ data class Reward(
     val title: String,
     val cost: Int,
     val iconResId: Int
+)
+
+data class LoginUser(
+    val username: String,
+    val pass: String
 )

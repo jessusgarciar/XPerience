@@ -1,7 +1,36 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.XPerience_AppFinal" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
-    </style>
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Colores de Marca (Ligeramente ajustados para contraste si se desea, o iguales) -->
+    <color name="purple_brand">#A569BD</color> <!-- Un poco más claro para resaltar en negro -->
+    <color name="purple_light_brand">#E582F3</color>
+
+    <color name="bg_screen_start">#1A1A1A</color>
+    <color name="bg_screen_end">#2C2C2C</color>
+    <color name="grey_800">#424242</color>
+
+    <!-- Colores Semánticos (Modo Oscuro) --><!-- Casi negro -->
+
+    <color name="bg_card">#252525</color>         <!-- Gris oscuro (Surface) -->
+    <color name="bg_nav_bar">#1E1E1E</color>      <!-- Un poco más oscuro que las tarjetas -->
+    <color name="stroke_nav">#333333</color>      <!-- Borde sutil -->
+    <color name="bg_input">#2D2D2D</color>
+    <color name="bg_dialog">#2C2C2C</color>
+
+    <!-- Bordes -->
+    <color name="stroke_input">#444444</color>
+
+    <color name="text_primary">#FFFFFF</color>    <!-- Texto blanco -->
+    <color name="text_secondary">#B0B0B0</color>  <!-- Gris claro -->
+    <color name="text_hint">#FFFFFF</color>
+    <color name="text_input">#FFFFFF</color>
+
+    <!-- Estados de Navegación -->
+    <color name="nav_active">#BB8FCE</color>      <!-- Púrpura pastel -->
+    <color name="nav_inactive">#777777</color>
+
+    <!-- Otros -->
+    <color name="white_fixed">#FFFFFF</color>
+    <color name="text_inactive">#666666</color>
+
+
 </resources>

@@ -10,19 +10,21 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.xperience_appfinal.databinding.FragmentMissionsBinding
 import com.example.xperience_appfinal.model.MockRepository
 import com.example.xperience_appfinal.model.Reward
 
-
 class MissionsFragment : Fragment() {
+
     private var _binding: FragmentMissionsBinding? = null
     private val binding get() = _binding!!
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         _binding = FragmentMissionsBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -50,17 +52,27 @@ class MissionsFragment : Fragment() {
         val inactiveColor = ContextCompat.getColor(requireContext(), R.color.text_inactive)
 
         if (showMissions) {
+            // Mostrar Misiones
             binding.layoutMissionsContent.visibility = View.VISIBLE
             binding.layoutRewardsContent.visibility = View.GONE
+
+            // Estilos Pestaña Activa (Misiones)
             binding.tabMissions.setBackgroundResource(R.drawable.tab_selected_bg)
             binding.tabMissions.setTextColor(activeColor)
+
+            // Estilos Pestaña Inactiva (Recompensas)
             binding.tabRewards.setBackgroundResource(android.R.color.transparent)
             binding.tabRewards.setTextColor(inactiveColor)
         } else {
+            // Mostrar Recompensas
             binding.layoutMissionsContent.visibility = View.GONE
             binding.layoutRewardsContent.visibility = View.VISIBLE
+
+            // Estilos Pestaña Inactiva (Misiones)
             binding.tabMissions.setBackgroundResource(android.R.color.transparent)
             binding.tabMissions.setTextColor(inactiveColor)
+
+            // Estilos Pestaña Activa (Recompensas)
             binding.tabRewards.setBackgroundResource(R.drawable.tab_selected_bg)
             binding.tabRewards.setTextColor(activeColor)
         }
@@ -69,12 +81,17 @@ class MissionsFragment : Fragment() {
     private fun loadMissions() {
         binding.missionsListContainer.removeAllViews()
         val inflater = LayoutInflater.from(context)
+
         for (mission in MockRepository.missionsList) {
             val view = inflater.inflate(R.layout.item_mission, binding.missionsListContainer, false)
+
             view.findViewById<TextView>(R.id.txt_mission_title).text = mission.title
             view.findViewById<TextView>(R.id.txt_mission_desc).text = mission.description
             view.findViewById<TextView>(R.id.txt_mission_points).text = "+ ${mission.pointsReward}"
             view.findViewById<ImageView>(R.id.img_mission_icon).setImageResource(mission.iconResId)
+
+            // Nota: El botón de "Ver Detalles" en item_mission es decorativo en este prototipo
+
             binding.missionsListContainer.addView(view)
         }
     }
@@ -82,39 +99,83 @@ class MissionsFragment : Fragment() {
     private fun loadRewards() {
         binding.rewardsListContainer.removeAllViews()
         val inflater = LayoutInflater.from(context)
+
         for (reward in MockRepository.rewardsList) {
             val view = inflater.inflate(R.layout.item_reward, binding.rewardsListContainer, false)
+
             view.findViewById<TextView>(R.id.txt_reward_title).text = reward.title
             view.findViewById<TextView>(R.id.txt_reward_cost).text = "${reward.cost} pts"
             view.findViewById<ImageView>(R.id.img_reward_icon).setImageResource(reward.iconResId)
+
             val btnRedeem = view.findViewById<Button>(R.id.btn_redeem)
             btnRedeem.setOnClickListener { attemptRedeem(reward) }
+
             binding.rewardsListContainer.addView(view)
         }
     }
 
     private fun attemptRedeem(reward: Reward) {
+        // Intentar canjear en el repositorio
         if (MockRepository.redeemPoints(reward.cost)) {
-            showSuccessDialog("¡Canje Exitoso!", "Has canjeado: ${reward.title}. Muestra esta pantalla.")
-            updatePointsDisplay()
+            // ÉXITO: Mostrar diálogo de felicitación
+            showSuccessDialog(
+                "¡Canje Exitoso!",
+                "Has canjeado: ${reward.title}.\n\nMuestra esta pantalla al personal para recibir tu recompensa."
+            )
+            updatePointsDisplay() // Actualizar contador visual
         } else {
+            // FALLO: Calcular puntos faltantes y mostrar error
             val missing = reward.cost - MockRepository.currentUser.points
-            Toast.makeText(context, "Te faltan $missing pts para ${reward.title}", Toast.LENGTH_SHORT).show()
+            showErrorDialog(
+                "Puntos Insuficientes",
+                "Te faltan $missing pts para canjear ${reward.title}.\n\n¡Sigue explorando para ganar más!"
+            )
         }
     }
 
     private fun showSuccessDialog(title: String, message: String) {
         val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_success, null)
+
         dialogView.findViewById<TextView>(R.id.dialog_title).text = title
         dialogView.findViewById<TextView>(R.id.dialog_message).text = message
-        val dialog = AlertDialog.Builder(context).setView(dialogView).setCancelable(false).create()
+
+        val dialog = AlertDialog.Builder(context)
+            .setView(dialogView)
+            .setCancelable(false)
+            .create()
+
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialogView.findViewById<Button>(R.id.btn_dialog_ok).setOnClickListener { dialog.dismiss() }
+
+        dialogView.findViewById<Button>(R.id.btn_dialog_ok).setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
+
+    private fun showErrorDialog(title: String, message: String) {
+        val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_error, null)
+
+        dialogView.findViewById<TextView>(R.id.dialog_error_title).text = title
+        dialogView.findViewById<TextView>(R.id.dialog_error_message).text = message
+
+        val dialog = AlertDialog.Builder(context)
+            .setView(dialogView)
+            .setCancelable(true)
+            .create()
+
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        dialogView.findViewById<Button>(R.id.btn_dialog_error_ok).setOnClickListener {
+            dialog.dismiss()
+        }
+
         dialog.show()
     }
 
     override fun onResume() {
         super.onResume()
+        // Asegurar que los puntos estén actualizados al volver a la pantalla
         updatePointsDisplay()
     }
 

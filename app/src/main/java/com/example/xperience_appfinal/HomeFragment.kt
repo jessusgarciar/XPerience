@@ -25,29 +25,43 @@ import com.example.xperience_appfinal.databinding.FragmentHomeBinding
 import com.example.xperience_appfinal.model.MockRepository
 import com.example.xperience_appfinal.model.Place
 
-
 class HomeFragment : Fragment() {
+
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
+    // Launcher para pedir permiso de GPS
     private val requestPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
             if (isGranted) {
-                Toast.makeText(context, "Permiso concedido. Intenta hacer Check-in de nuevo.", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "Permiso concedido. Intenta hacer Check-in de nuevo.", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(context, "Se requiere permiso de ubicación para validar el Check-in.", Toast.LENGTH_LONG).show()
+                showErrorDialog("Permiso Requerido", "Necesitamos tu ubicación para validar que estás en el lugar.")
             }
         }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // Cargar datos iniciales
         updateUserData()
         loadPlacesList()
+
+        // Funcionalidad del botón "Ver Mapa" (General del encabezado)
+        binding.btnViewAllMap.setOnClickListener {
+            // Abre el mapa centrado en Aguascalientes
+            openGoogleMaps(21.8853, -102.2916, "Lugares en Aguascalientes")
+        }
+
+        // Botón Debug (Para pruebas rápidas sin GPS)
         binding.btnDebugAdd.setOnClickListener {
             MockRepository.addPoints(50)
             updateUserData()
@@ -68,21 +82,31 @@ class HomeFragment : Fragment() {
         val inflater = LayoutInflater.from(context)
 
         for (place in places) {
+            // Inflar el diseño individual de cada lugar
             val placeView = inflater.inflate(R.layout.item_place, binding.placesContainer, false)
 
-            placeView.findViewById<ImageView>(R.id.item_place_image).setImageResource(place.imageResId)
-            placeView.findViewById<TextView>(R.id.item_place_title).text = place.title
-            placeView.findViewById<TextView>(R.id.item_place_desc).text = place.description
-            placeView.findViewById<TextView>(R.id.item_place_points).text = "+ ${place.pointsAwarded} pts"
-            placeView.findViewById<TextView>(R.id.item_place_category).text = place.category
-
+            // Enlazar vistas
+            val imageView = placeView.findViewById<ImageView>(R.id.item_place_image)
+            val titleView = placeView.findViewById<TextView>(R.id.item_place_title)
+            val descView = placeView.findViewById<TextView>(R.id.item_place_desc)
+            val pointsView = placeView.findViewById<TextView>(R.id.item_place_points)
+            val categoryView = placeView.findViewById<TextView>(R.id.item_place_category)
             val btnCheckin = placeView.findViewById<Button>(R.id.item_btn_checkin)
             val btnMap = placeView.findViewById<Button>(R.id.item_btn_map)
 
+            // Asignar datos del repositorio a la vista
+            imageView.setImageResource(place.imageResId) // Imagen real
+            titleView.text = place.title
+            descView.text = place.description
+            pointsView.text = "+ ${place.pointsAwarded} pts"
+            categoryView.text = place.category
+
+            // Lógica Botón "Ver Mapa"
             btnMap.setOnClickListener {
                 openGoogleMaps(place.latitude, place.longitude, place.title)
             }
 
+            // Lógica Botón "Check-in"
             if (place.isVisited) {
                 btnCheckin.text = "Visitado"
                 btnCheckin.isEnabled = false
@@ -92,68 +116,128 @@ class HomeFragment : Fragment() {
                     checkInWithGPS(place, btnCheckin)
                 }
             }
+
+            // Agregar la tarjeta a la lista
             binding.placesContainer.addView(placeView)
         }
     }
 
+    // Función para abrir Google Maps con las coordenadas
     private fun openGoogleMaps(lat: Double, lon: Double, label: String) {
         val gmmIntentUri = Uri.parse("geo:$lat,$lon?q=$lat,$lon($label)")
         val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
         mapIntent.setPackage("com.google.android.apps.maps")
+
         try {
             startActivity(mapIntent)
         } catch (e: Exception) {
+            // Si no tiene la app, abre en navegador
             val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/maps/search/?api=1&query=$lat,$lon"))
             startActivity(browserIntent)
         }
     }
 
+    // Lógica principal de GPS
     private fun checkInWithGPS(place: Place, button: Button) {
         val context = requireContext()
+
+        // 1. Verificar Permisos
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
             return
         }
+
+        // 2. Obtener Ubicación
         val locationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
         val lastKnownLocationGPS = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
         val lastKnownLocationNetwork = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
+
         val currentLocation = lastKnownLocationGPS ?: lastKnownLocationNetwork
 
         if (currentLocation != null) {
-            val distanceInMeters = calculateDistance(currentLocation.latitude, currentLocation.longitude, place.latitude, place.longitude)
-            if (distanceInMeters <= 150) {
+            // 3. Calcular Distancia
+            val distanceInMeters = calculateDistance(
+                currentLocation.latitude, currentLocation.longitude,
+                place.latitude, place.longitude
+            )
+
+            // 4. Validar Proximidad (Radio de 200 metros)
+            if (distanceInMeters <= 200) {
                 verifySuccess(place, button)
             } else {
-                Toast.makeText(context, "Estás a ${distanceInMeters.toInt()}m. Acércate más a ${place.title}.", Toast.LENGTH_LONG).show()
+                // Mostrar Diálogo de Error si está lejos
+                showErrorDialog(
+                    "Estás un poco lejos",
+                    "El GPS indica que estás a ${distanceInMeters.toInt()}m de distancia.\n\nAcércate más a ${place.title} para hacer check-in."
+                )
             }
+
         } else {
-            Toast.makeText(context, "No se pudo obtener tu ubicación. Enciende el GPS.", Toast.LENGTH_LONG).show()
+            showErrorDialog("GPS no encontrado", "No pudimos obtener tu ubicación. Asegúrate de tener el GPS encendido.")
         }
     }
 
+    // Matemáticas para calcular distancia
     private fun calculateDistance(lat1: Double, lon1: Double, lat2: Double, lon2: Double): Float {
         val results = FloatArray(1)
         Location.distanceBetween(lat1, lon1, lat2, lon2, results)
         return results[0]
     }
 
+    // Acción cuando el check-in es exitoso
     private fun verifySuccess(place: Place, button: Button) {
+        // Actualizar repositorio
         MockRepository.addPoints(place.pointsAwarded)
         MockRepository.markPlaceAsVisited(place.id)
+
+        // Mostrar Diálogo de Éxito
         showSuccessDialog("¡Check-in Exitoso!", "Has ganado ${place.pointsAwarded} puntos por visitar ${place.title}")
+
+        // Actualizar UI
         updateUserData()
         button.text = "Visitado"
         button.isEnabled = false
         button.alpha = 0.5f
     }
 
+    // Mostrar ventana emergente de Éxito
     private fun showSuccessDialog(title: String, message: String) {
         val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_success, null)
+
         dialogView.findViewById<TextView>(R.id.dialog_title).text = title
         dialogView.findViewById<TextView>(R.id.dialog_message).text = message
-        val dialog = AlertDialog.Builder(context).setView(dialogView).setCancelable(false).create()
+
+        val dialog = AlertDialog.Builder(context)
+            .setView(dialogView)
+            .setCancelable(false)
+            .create()
+
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialogView.findViewById<Button>(R.id.btn_dialog_ok).setOnClickListener { dialog.dismiss() }
+
+        dialogView.findViewById<Button>(R.id.btn_dialog_ok).setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
+
+    // Mostrar ventana emergente de Error
+    private fun showErrorDialog(title: String, message: String) {
+        val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_error, null)
+        dialogView.findViewById<TextView>(R.id.dialog_error_title).text = title
+        dialogView.findViewById<TextView>(R.id.dialog_error_message).text = message
+
+        val dialog = AlertDialog.Builder(context)
+            .setView(dialogView)
+            .setCancelable(true)
+            .create()
+
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        dialogView.findViewById<Button>(R.id.btn_dialog_error_ok).setOnClickListener {
+            dialog.dismiss()
+        }
+
         dialog.show()
     }
 

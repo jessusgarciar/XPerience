@@ -1,29 +1,18 @@
-<!--
-  Este es el drawable del Snippet 4, renombrado para claridad.
-  Define el fondo blanco con borde superior para la barra de navegación.
--->
-<vector
-     xmlns:android="http://schemas.android.com/apk/res/android"
-     xmlns:aapt="http://schemas.android.com/aapt"
-     android:width="364.91dp"
-     android:height="77.81dp"
-     android:viewportWidth="364.91"
-     android:viewportHeight="77.81"
-    >
-<group>
-<clip-path
- android:pathData="M0 0H364.914V77.8057H0V0Z"
-/>
-<!-- Fondo blanco -->
-<path
- android:pathData="M0 0V77.8057H364.914V0"
- android:fillColor="#FFFFFF"
-/>
-<!-- Borde superior -->
-<path
- android:pathData="M0 0H364.914V77.8057H0V0Z"
- android:strokeWidth="2"
- android:strokeColor="#E5E7EB"
-/>
-</group>
-    </vector>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="364.91dp"
+    android:height="77.81dp"
+    android:viewportWidth="364.91"
+    android:viewportHeight="77.81">
+    <group>
+        <clip-path android:pathData="M0 0H364.914V77.8057H0V0Z"/>
+        <!-- Fondo dinámico (blanco o gris oscuro) -->
+        <path
+            android:pathData="M0 0V77.8057H364.914V0"
+            android:fillColor="@color/bg_nav_bar"/>
+        <!-- Borde Superior dinámico -->
+        <path
+            android:pathData="M0 0H364.914V77.8057H0V0Z"
+            android:strokeWidth="2"
+            android:strokeColor="@color/stroke_nav"/>
+    </group>
+</vector>

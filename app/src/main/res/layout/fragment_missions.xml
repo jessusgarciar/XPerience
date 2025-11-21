@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/transparent"
     android:clipToPadding="false"
+    android:fillViewport="true"
     android:paddingBottom="16dp">
 
     <LinearLayout
@@ -12,47 +13,44 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingHorizontal="16dp"
-        android:paddingTop="30dp">
+        android:paddingTop="48dp"> <!-- Padding Top Ajustado -->
 
-        <!-- Cabecera -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Misiones y Recompensas"
-            android:textColor="@android:color/black"
+            android:textColor="@color/text_primary"
             android:textSize="24sp"
             android:textStyle="bold"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Completa desafíos y canjea tus puntos"
-            android:textColor="#666666"
+            android:textColor="@color/text_secondary"
             android:textSize="16sp"
             android:layout_marginTop="4dp"/>
 
-        <!-- Tarjeta de Puntos -->
+        <!-- Tarjeta Puntos (Siempre colorida, texto blanco fijo) -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/gradient_button_bg"
             android:padding="20dp"
             android:layout_marginTop="20dp">
-
             <TextView
                 android:id="@+id/label_tus_puntos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Tus puntos disponibles"
-                android:textColor="@android:color/white"
+                android:textColor="@color/white_fixed"
                 android:alpha="0.9"
                 android:textSize="14sp"/>
-
             <TextView
                 android:id="@+id/text_total_puntos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
-                android:textColor="@android:color/white"
+                android:textColor="@color/white_fixed"
                 android:textSize="22sp"
                 android:textStyle="bold"
                 android:layout_below="@id/label_tus_puntos"/>
@@ -65,9 +63,8 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginTop="20dp"
-            android:background="@drawable/tab_unselected_bg"
+            android:background="@drawable/white_card_bg"
             android:padding="4dp">
-
             <TextView
                 android:id="@+id/tab_missions"
                 android:layout_width="0dp"
@@ -76,10 +73,9 @@
                 android:text="Misiones"
                 android:gravity="center"
                 android:padding="12dp"
-                android:textColor="@android:color/white"
+                android:textColor="@color/white_fixed"
                 android:background="@drawable/tab_selected_bg"
                 android:textStyle="bold"/>
-
             <TextView
                 android:id="@+id/tab_rewards"
                 android:layout_width="0dp"
@@ -88,12 +84,12 @@
                 android:text="Recompensas"
                 android:gravity="center"
                 android:padding="12dp"
-                android:textColor="#666666"
+                android:textColor="@color/text_secondary"
                 android:background="@android:color/transparent"
                 android:textStyle="bold"/>
         </LinearLayout>
 
-        <!-- Lista Misiones -->
+        <!-- Contenedor Misiones -->
         <LinearLayout
             android:id="@+id/layout_missions_content"
             android:layout_width="match_parent"
@@ -104,7 +100,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Misiones disponibles"
-                android:textColor="@android:color/black"
+                android:textColor="@color/text_primary"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:layout_marginTop="24dp"
@@ -116,7 +112,7 @@
                 android:orientation="vertical"/>
         </LinearLayout>
 
-        <!-- Lista Recompensas -->
+        <!-- Contenedor Recompensas -->
         <LinearLayout
             android:id="@+id/layout_rewards_content"
             android:layout_width="match_parent"
@@ -127,7 +123,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Canjea tus puntos"
-                android:textColor="@android:color/black"
+                android:textColor="@color/text_primary"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:layout_marginTop="24dp"
@@ -138,6 +134,5 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"/>
         </LinearLayout>
-
     </LinearLayout>
 </ScrollView>

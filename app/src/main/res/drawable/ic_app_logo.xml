@@ -1,0 +1,25 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Fondo Morado Vibrante -->
+    <path
+        android:fillColor="#8E44AD"
+        android:pathData="M54,4L94,24V84L54,104L14,84V24L54,4Z"/>
+
+    <!-- La "X" Estilizada en Blanco -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M34,34L74,74M74,34L34,74"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="8"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"/>
+
+    <!-- Detalles sutiles (Estrella pequeña arriba) -->
+    <path
+        android:fillColor="#D946EF"
+        android:pathData="M54,20L56,24L60,24L57,27L58,31L54,29L50,31L51,27L48,24L52,24Z"/>
+</vector>

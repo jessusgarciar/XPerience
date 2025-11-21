@@ -1,5 +1,9 @@
-<!-- Define la tarjeta blanca con esquinas redondeadas -->
+<?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="@android:color/white"/>
+    <!--
+      Usamos la referencia semántica '@color/bg_card' en lugar de fixed white.
+      Esto permite que cambie automáticamente entre Blanco (Día) y Gris Oscuro (Noche).
+    -->
+    <solid android:color="@color/bg_card"/>
     <corners android:radius="20dp"/>
 </shape>

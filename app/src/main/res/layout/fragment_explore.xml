@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/transparent"
     android:clipToPadding="false"
+    android:fillViewport="true"
     android:paddingBottom="16dp">
 
     <LinearLayout
@@ -19,14 +20,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Explorar Rutas"
-            android:textColor="@android:color/black"
+            android:textColor="@color/text_primary"
             android:textSize="24sp"
             android:textStyle="bold"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Descubre nuevas aventuras en Aguascalientes"
-            android:textColor="#666666"
+            android:textColor="@color/text_secondary"
             android:textSize="16sp"
             android:layout_marginTop="4dp"/>
 
@@ -82,7 +83,7 @@
                     android:layout_height="wrap_content"
                     android:text="Todos"
                     android:background="@drawable/filter_chip_selected"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/text_primary"
                     android:textStyle="bold"
                     android:paddingHorizontal="16dp"
                     android:paddingVertical="8dp"

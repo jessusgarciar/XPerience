@@ -1,8 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="text_inactive">#666666</color>
+    <!-- Colores de Marca (Se mantienen igual) -->
+    <color name="purple_brand">#8E44AD</color>
+    <color name="purple_light_brand">#D946EF</color>
+
+    <!-- Colores Semánticos (Modo Claro) -->
+    <color name="bg_screen_start">#FAF5FF</color> <!-- Degradado fondo inicio -->
+    <color name="bg_screen_end">#FDF2F8</color>   <!-- Degradado fondo fin -->
+
+    <color name="bg_card">#FFFFFF</color>         <!-- Fondo de tarjetas -->
+    <color name="bg_nav_bar">#FFFFFF</color>      <!-- Fondo barra navegación -->
+    <color name="stroke_nav">#E5E7EB</color>      <!-- Borde barra navegación -->
+    <color name="bg_dialog">#FFFFFF</color>
+    <color name="bg_input">#FFFFFF</color>
+    <color name="stroke_input">#FFFFFF</color>
+
+    <color name="text_primary">#000000</color>    <!-- Títulos, negritas -->
+    <color name="text_secondary">#666666</color>  <!-- Descripciones, subtítulos -->
+    <color name="text_input">#222222</color>
+    <color name="text_hint">#999999</color>
+
+    <!-- Estados de Navegación -->
     <color name="nav_active">#8E44AD</color>
     <color name="nav_inactive">#AAAAAA</color>
+
+    <!-- Otros -->
+    <color name="white_fixed">#FFFFFF</color>
+    <color name="text_inactive">#666666</color>
+    <color name="grey_800">#424242</color>
 </resources>
