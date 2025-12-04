@@ -2,9 +2,7 @@
 
 <div align="center">
 
-![XPerience Logo](app/src/main/res/drawable/logo_selector.png)
-
-**Explora, Aprende y Gana - Tu guía gamificada de experiencias locales**
+**Explora, Aprende y Gana - Tu guía gamificada de experiencias locales en AGS (BD LOCAL).**
 
 [![Android](https://img.shields.io/badge/Platform-Android-green.svg)](https://android.com)
 [![Kotlin](https://img.shields.io/badge/Language-Kotlin-purple.svg)](https://kotlinlang.org)
@@ -408,15 +406,16 @@ El APK estará en: `app/build/outputs/apk/release/`
 
 ## 🗺️ Roadmap y Mejoras Futuras
 
-### 📅 Versión 1.1 (Q1 2026)
+### 📅 Versión 1.1
 
+- [ ] **Creacion del backend** en Firebase
 - [ ] **Integración con Google Maps** para visualización mejorada
 - [ ] **Sistema de amigos** y perfiles sociales
 - [ ] **Notificaciones push** para misiones cercanas
 - [ ] **Modo oscuro** completo
 - [ ] **Soporte multiidioma** (Español, Inglés, Portugués)
 
-### 📅 Versión 1.2 (Q2 2026)
+### 📅 Versión 1.2
 
 - [ ] **Realidad Aumentada (AR)** para exploración inmersiva
 - [ ] **Chat en tiempo real** entre usuarios
@@ -424,7 +423,7 @@ El APK estará en: `app/build/outputs/apk/release/`
 - [ ] **Leaderboards globales** y por región
 - [ ] **Integración con redes sociales** para compartir logros
 
-### 📅 Versión 2.0 (Q3 2026)
+### 📅 Versión 2.0
 
 - [ ] **Backend con API REST** (Firebase o Node.js)
 - [ ] **Sincronización en la nube** de progreso
