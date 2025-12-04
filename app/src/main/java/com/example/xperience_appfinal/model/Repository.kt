@@ -48,9 +48,9 @@ class Repository(
 
     // --- LÓGICA DE NEGOCIO (LOGIN) ---
     private val loginUsers = listOf(
-        LoginUser("DianaCesillon", "123456"),
-        LoginUser("JesusGarcia", "123456"),
-        LoginUser("RobertoMedrano", "123456")
+        LoginUser("usuario1", "123456"),
+        LoginUser("usuario2", "123456"),
+        LoginUser("usuario3", "123456")
     )
 
     fun verifyUser(username: String, pass: String): Boolean {
