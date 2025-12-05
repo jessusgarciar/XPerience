@@ -409,11 +409,10 @@ El APK estará en: `app/build/outputs/apk/release/`
 ### 📅 Versión 1.1
 
 - [ ] **Creacion del backend** en Firebase
+- [ ] **Sincronización en la nube** de progreso
 - [ ] **Integración con Google Maps** para visualización mejorada
 - [ ] **Sistema de amigos** y perfiles sociales
 - [ ] **Notificaciones push** para misiones cercanas
-- [ ] **Modo oscuro** completo
-- [ ] **Soporte multiidioma** (Español, Inglés, Portugués)
 
 ### 📅 Versión 1.2
 
@@ -425,8 +424,6 @@ El APK estará en: `app/build/outputs/apk/release/`
 
 ### 📅 Versión 2.0
 
-- [ ] **Backend con API REST** (Firebase o Node.js)
-- [ ] **Sincronización en la nube** de progreso
 - [ ] **Eventos especiales** y misiones temporales
 - [ ] **Sistema de monetización** (IAPs para contenido premium)
 - [ ] **Marketplace de recompensas** con partners locales
